@@ -1,0 +1,20 @@
+{
+  "name": "f1r3starter/brackets",
+  "type": "library",
+  "description": "Yet another K-d tree implementation",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Andrii Filenko",
+      "email": "andrey.filenochko@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "KDTree\\": "src"
+    }
+  }
+}
