@@ -24,6 +24,13 @@ interface PointInterface
     /**
      * @param PointInterface $point
      *
+     * @return float
+     */
+    public function distance(PointInterface $point): float;
+
+    /**
+     * @param PointInterface $point
+     *
      * @return bool
      */
     public function equals(PointInterface $point): bool;
