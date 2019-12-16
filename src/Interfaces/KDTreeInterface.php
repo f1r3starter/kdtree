@@ -43,7 +43,17 @@ interface KDTreeInterface
     /**
      * @param PointInterface $point
      *
-     * @return PointInterface
+     * @return PointInterface|null
      */
-    public function nearest(PointInterface $point): PointInterface;
+    public function nearest(PointInterface $point): ?PointInterface;
+
+    /**
+     * @return int
+     */
+    public function getDimensions(): int;
+
+    /**
+     * @return NodeInterface|null
+     */
+    public function getRoot(): ?NodeInterface;
 }
