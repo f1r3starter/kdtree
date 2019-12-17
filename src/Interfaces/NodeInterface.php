@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KDTree\Interfaces;
 
 interface NodeInterface
@@ -8,6 +10,13 @@ interface NodeInterface
      * @return PointInterface
      */
     public function getPoint(): PointInterface;
+
+    /**
+     * @param PointInterface $point
+     *
+     * @return NodeInterface
+     */
+    public function setPoint(PointInterface $point): NodeInterface;
 
     /**
      * @return NodeInterface|null
