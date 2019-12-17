@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace KDTree\Interfaces;
 
 interface KDTreeInterface
@@ -34,18 +36,11 @@ interface KDTreeInterface
     public function points(): PointsListInterface;
 
     /**
-     * @param PartitionInterface $partition
-     *
-     * @return PointsListInterface
-     */
-    public function range(PartitionInterface $partition): PointsListInterface;
-
-    /**
      * @param PointInterface $point
      *
-     * @return PointInterface|null
+     * @return KDTreeInterface
      */
-    public function nearest(PointInterface $point): ?PointInterface;
+    public function delete(PointInterface $point): KDTreeInterface;
 
     /**
      * @return int
