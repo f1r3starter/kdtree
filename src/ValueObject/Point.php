@@ -2,8 +2,7 @@
 
 namespace KDTree\ValueObject;
 
-use KDTree\Exceptions\InvalidPointProvided;
-use KDTree\Exceptions\UnknownDimension;
+use KDTree\Exceptions\{InvalidPointProvided, UnknownDimension};
 use KDTree\Interfaces\PointInterface;
 
 class Point implements PointInterface
@@ -20,6 +19,7 @@ class Point implements PointInterface
 
     /**
      * Point constructor.
+     *
      * @param float ...$axises
      */
     public function __construct(float ...$axises)
@@ -31,17 +31,29 @@ class Point implements PointInterface
     /**
      * @inheritDoc
      */
-    public function getDimensions(): int
+    public function distance(PointInterface $point): float
     {
-        return $this->dimensions;
+        if ($point->getDimensions() !== $this->getDimensions()) {
+            throw new InvalidPointProvided();
+        }
+
+        $result = array_reduce(
+            range(0, $this->dimensions - 1),
+            function (float $result, int $dimension) use ($point) {
+                return $result + ($point->getDAxis($dimension) - $this->getDAxis($dimension)) ** 2;
+            },
+            0.0
+        );
+
+        return sqrt($result);
     }
 
     /**
      * @inheritDoc
      */
-    public function getAxises(): array
+    public function getDimensions(): int
     {
-        return $this->axises;
+        return $this->dimensions;
     }
 
     /**
@@ -59,27 +71,16 @@ class Point implements PointInterface
     /**
      * @inheritDoc
      */
-    public function distance(PointInterface $point): float
+    public function equals(PointInterface $point): bool
     {
-        if ($point->getDimensions() !== $this->getDimensions()) {
-            throw new InvalidPointProvided();
-        }
-
-        $result = array_reduce(range(0, $this->dimensions - 1),
-            function (float $result, int $dimension) use ($point) {
-                return $result + ($point->getDAxis($dimension) - $this->getDAxis($dimension)) ** 2;
-            },
-        0.0
-        );
-
-        return sqrt($result);
+        return $this->getAxises() === $point->getAxises();
     }
 
     /**
      * @inheritDoc
      */
-    public function equals(PointInterface $point): bool
+    public function getAxises(): array
     {
-        return $this->getAxises() === $point->getAxises();
+        return $this->axises;
     }
 }

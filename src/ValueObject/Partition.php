@@ -2,11 +2,8 @@
 
 namespace KDTree\ValueObject;
 
-use KDTree\Exceptions\InvalidPointsCount;
-use KDTree\Exceptions\UnknownDimension;
-use KDTree\Interfaces\PartitionInterface;
-use KDTree\Interfaces\PointInterface;
-use KDTree\Interfaces\PointsListInterface;
+use KDTree\Exceptions\{InvalidPointsCount, UnknownDimension};
+use KDTree\Interfaces\{PartitionInterface, PointInterface, PointsListInterface};
 
 class Partition implements PartitionInterface
 {
@@ -40,7 +37,7 @@ class Partition implements PartitionInterface
         $dMax = array_fill(0, $pointsList->getDimensions(), PHP_INT_MIN);
         $dMin = array_fill(0, $pointsList->getDimensions(), PHP_INT_MAX);
         foreach ($pointsList as $point) {
-            foreach ($point->getAxis() as $d => $axis) {
+            foreach ($point->getAxises() as $d => $axis) {
                 $dMax[$d] = max($dMax[$d], $axis);
                 $dMin[$d] = min($dMin[$d], $axis);
             }
@@ -53,9 +50,15 @@ class Partition implements PartitionInterface
     /**
      * @inheritDoc
      */
-    public function getDimensions(): int
+    public function contains(PointInterface $point): bool
     {
-        return $this->pointsList->getDimensions();
+        foreach ($point->getAxises() as $dimension => $axis) {
+            if ($axis < $this->getDMin($dimension) || $axis > $this->getDMax($dimension)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -85,10 +88,13 @@ class Partition implements PartitionInterface
     /**
      * @inheritDoc
      */
-    public function contains(PointInterface $point): bool
+    public function intersects(PartitionInterface $partition): bool
     {
-        foreach ($point->getAxises() as $dimension => $axis) {
-            if ($axis < $this->getDMin($dimension) || $axis > $this->getDMax($dimension)) {
+        foreach (range(0, $this->getDimensions() - 1) as $dimension) {
+            $isIntersects = $this->getDMax($dimension) >= $partition->getDMin($dimension)
+                && $partition->getDMax($dimension) >= $this->getDMin($dimension);
+
+            if (false === $isIntersects) {
                 return false;
             }
         }
@@ -99,9 +105,9 @@ class Partition implements PartitionInterface
     /**
      * @inheritDoc
      */
-    public function intersects(PartitionInterface $partition): bool
+    public function getDimensions(): int
     {
-
+        return $this->pointsList->getDimensions();
     }
 
     /**
@@ -128,6 +134,17 @@ class Partition implements PartitionInterface
      */
     public function equals(PartitionInterface $partition): bool
     {
-        // TODO: Implement equals() method.
+        if ($partition->getDimensions() !== $this->getDimensions()) {
+            return false;
+        }
+
+        foreach (range(0, $this->getDimensions() - 1) as $dimension) {
+            if ($this->getDMin($dimension) !== $partition->getDMin($dimension)
+                || $this->getDMax($dimension) !== $partition->getDMax($dimension)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
