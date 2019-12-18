@@ -2,7 +2,7 @@
   "name": "f1r3starter/brackets",
   "type": "library",
   "description": "Yet another K-d tree implementation",
-  "license": "proprietary",
+  "license": "MIT",
   "authors": [
     {
       "name": "Andrii Filenko",
