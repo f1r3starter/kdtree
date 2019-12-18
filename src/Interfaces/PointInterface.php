@@ -7,6 +7,11 @@ namespace KDTree\Interfaces;
 interface PointInterface
 {
     /**
+     * @return string
+     */
+    public function getId(): string;
+
+    /**
      * @return int
      */
     public function getDimensions(): int;

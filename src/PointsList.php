@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace KDTree;
 
-use KDTree\{Exceptions\InvalidPointProvided,
+use KDTree\{Exceptions\InvalidDimensionsCount,
+    Exceptions\InvalidPointProvided,
     Exceptions\PointNotFound,
     Interfaces\PointInterface,
     Interfaces\PointsListInterface};
@@ -26,6 +27,9 @@ class PointsList implements PointsListInterface
      */
     public function __construct(int $dimensions)
     {
+        if ($dimensions < 1) {
+            throw new InvalidDimensionsCount();
+        }
         $this->dimensions = $dimensions;
     }
 

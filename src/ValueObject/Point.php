@@ -2,11 +2,16 @@
 
 namespace KDTree\ValueObject;
 
-use KDTree\Exceptions\{InvalidPointProvided, UnknownDimension};
+use KDTree\Exceptions\{InvalidDimensionsCount, InvalidPointProvided, UnknownDimension};
 use KDTree\Interfaces\PointInterface;
 
 class Point implements PointInterface
 {
+    /**
+     * @var string
+     */
+    private $id;
+
     /**
      * @var int
      */
@@ -20,12 +25,26 @@ class Point implements PointInterface
     /**
      * Point constructor.
      *
+     * @param string $id
      * @param float ...$axises
      */
-    public function __construct(float ...$axises)
+    public function __construct(string $id, float ...$axises)
     {
+        $dimensions = count($axises);
+        if ($dimensions < 1) {
+            throw new InvalidDimensionsCount();
+        }
+        $this->dimensions = $dimensions;
         $this->axises = $axises;
-        $this->dimensions = count($axises);
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     /**
