@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace KDTree\Search;
 
-use KDTree\Interfaces\{KDTreeInterface, NodeInterface, PartitionInterface, PointsListInterface, RangeSearchInterface};
+use KDTree\PointsList;
+use KDTree\Interfaces\{KDTreeInterface, NodeInterface, PartitionInterface, PointsListInterface, PartitionSearchInterface};
 
-class RangeSearch implements RangeSearchInterface
+class PartitionSearch implements PartitionSearchInterface
 {
     /**
      * @var KDTreeInterface
@@ -24,10 +25,10 @@ class RangeSearch implements RangeSearchInterface
     /**
      * @inheritDoc
      */
-    public function range(PartitionInterface $partition): PointsListInterface
+    public function find(PartitionInterface $partition): PointsListInterface
     {
         $pointsList = new PointsList($this->tree->getDimensions());
-        $this->rangeAdd($this->tree->getRoot(), $partition, $pointsList);
+        $this->partitionAdd($this->tree->getRoot(), $partition, $pointsList);
 
         return $pointsList;
     }
@@ -37,7 +38,7 @@ class RangeSearch implements RangeSearchInterface
      * @param PartitionInterface $partition
      * @param PointsListInterface $pointsList
      */
-    private function rangeAdd(
+    private function partitionAdd(
         ?NodeInterface $node,
         PartitionInterface $partition,
         PointsListInterface $pointsList
@@ -47,8 +48,8 @@ class RangeSearch implements RangeSearchInterface
                 $pointsList->addPoint($node->getPoint());
             }
 
-            $this->rangeAdd($node->getLeft(), $partition, $pointsList);
-            $this->rangeAdd($node->getRight(), $partition, $pointsList);
+            $this->partitionAdd($node->getLeft(), $partition, $pointsList);
+            $this->partitionAdd($node->getRight(), $partition, $pointsList);
         }
     }
 }
