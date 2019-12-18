@@ -10,7 +10,7 @@ class Point implements PointInterface
     /**
      * @var string
      */
-    private $id;
+    private $name;
 
     /**
      * @var int
@@ -36,15 +36,15 @@ class Point implements PointInterface
         }
         $this->dimensions = $dimensions;
         $this->axises = $axises;
-        $this->id = $id;
+        $this->name = $id;
     }
 
     /**
      * @return string
      */
-    public function getId(): string
+    public function getName(): string
     {
-        return $this->id;
+        return $this->name;
     }
 
     /**
