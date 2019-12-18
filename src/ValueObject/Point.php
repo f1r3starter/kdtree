@@ -25,10 +25,9 @@ class Point implements PointInterface
     /**
      * Point constructor.
      *
-     * @param string $id
      * @param float ...$axises
      */
-    public function __construct(string $id, float ...$axises)
+    public function __construct(float ...$axises)
     {
         $dimensions = count($axises);
         if ($dimensions < 1) {
@@ -36,7 +35,6 @@ class Point implements PointInterface
         }
         $this->dimensions = $dimensions;
         $this->axises = $axises;
-        $this->name = $id;
     }
 
     /**
@@ -45,6 +43,18 @@ class Point implements PointInterface
     public function getName(): string
     {
         return $this->name;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return PointInterface
+     */
+    public function setName(string $name): PointInterface
+    {
+        $this->name = $name;
+
+        return $this;
     }
 
     /**

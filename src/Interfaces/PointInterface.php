@@ -12,6 +12,13 @@ interface PointInterface
     public function getName(): string;
 
     /**
+     * @param string $name
+     *
+     * @return PointInterface
+     */
+    public function setName(string $name): PointInterface;
+
+    /**
      * @return int
      */
     public function getDimensions(): int;
