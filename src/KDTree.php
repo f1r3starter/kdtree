@@ -26,6 +26,8 @@ class KDTree implements KDTreeInterface
 
     /**
      * @param int $dimensions
+     *
+     * @throws InvalidDimensionsCount
      */
     public function __construct(int $dimensions)
     {
@@ -53,7 +55,10 @@ class KDTree implements KDTreeInterface
     }
 
     /**
-     * @inheritDoc
+     * @param PointInterface $point
+     *
+     * @return KDTreeInterface
+     * @throws Exceptions\InvalidPointProvided|PointAlreadyExists
      */
     public function put(PointInterface $point): KDTreeInterface
     {
@@ -84,7 +89,10 @@ class KDTree implements KDTreeInterface
     }
 
     /**
-     * @inheritDoc
+     * @param PointInterface $point
+     *
+     * @return KDTreeInterface
+     * @throws PointNotFound
      */
     public function delete(PointInterface $point): KDTreeInterface
     {
@@ -116,6 +124,7 @@ class KDTree implements KDTreeInterface
      * @param int $cuttingDimension
      *
      * @return NodeInterface|null
+     * @throws PointAlreadyExists
      */
     private function insertNode(?NodeInterface $node, PointInterface $point, int $cuttingDimension): ?NodeInterface
     {
@@ -183,6 +192,7 @@ class KDTree implements KDTreeInterface
      * @param int $cuttingDimension
      *
      * @return NodeInterface|null
+     * @throws PointNotFound
      */
     private function deletePoint(PointInterface $point, ?NodeInterface $node, int $cuttingDimension): ?NodeInterface
     {

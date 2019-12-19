@@ -24,6 +24,8 @@ class Partition implements PartitionInterface
 
     /**
      * @param PointsListInterface $pointsList
+     *
+     * @throws InvalidPointsCount
      */
     public function __construct(PointsListInterface $pointsList)
     {
@@ -48,7 +50,10 @@ class Partition implements PartitionInterface
     }
 
     /**
-     * @inheritDoc
+     * @param PointInterface $point
+     *
+     * @return bool
+     * @throws UnknownDimension
      */
     public function contains(PointInterface $point): bool
     {
@@ -62,7 +67,10 @@ class Partition implements PartitionInterface
     }
 
     /**
-     * @inheritDoc
+     * @param int $dimension
+     *
+     * @return float
+     * @throws UnknownDimension
      */
     public function getDMin(int $dimension): float
     {
@@ -74,7 +82,10 @@ class Partition implements PartitionInterface
     }
 
     /**
-     * @inheritDoc
+     * @param int $dimension
+     *
+     * @return float
+     * @throws UnknownDimension
      */
     public function getDMax(int $dimension): float
     {
@@ -86,7 +97,10 @@ class Partition implements PartitionInterface
     }
 
     /**
-     * @inheritDoc
+     * @param PartitionInterface $partition
+     *
+     * @return bool
+     * @throws UnknownDimension
      */
     public function intersects(PartitionInterface $partition): bool
     {
@@ -111,7 +125,10 @@ class Partition implements PartitionInterface
     }
 
     /**
-     * @inheritDoc
+     * @param PointInterface $point
+     *
+     * @return float
+     * @throws UnknownDimension
      */
     public function distanceToPoint(PointInterface $point): float
     {
@@ -130,7 +147,10 @@ class Partition implements PartitionInterface
     }
 
     /**
-     * @inheritDoc
+     * @param PartitionInterface $partition
+     *
+     * @return bool
+     * @throws UnknownDimension
      */
     public function equals(PartitionInterface $partition): bool
     {

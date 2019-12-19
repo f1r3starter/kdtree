@@ -24,6 +24,8 @@ class PointsList implements PointsListInterface
 
     /**
      * @param int $dimensions
+     *
+     * @throws InvalidDimensionsCount
      */
     public function __construct(int $dimensions)
     {
@@ -93,6 +95,7 @@ class PointsList implements PointsListInterface
      * @param PointInterface $point
      *
      * @return PointsListInterface
+     * @throws InvalidPointProvided
      */
     public function addPoint(PointInterface $point): PointsListInterface
     {
@@ -108,6 +111,7 @@ class PointsList implements PointsListInterface
      * @param PointInterface $point
      *
      * @return PointsListInterface
+     * @throws PointNotFound
      */
     public function removePoint(PointInterface $point): PointsListInterface
     {

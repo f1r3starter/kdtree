@@ -23,9 +23,9 @@ class Point implements PointInterface
     private $axises;
 
     /**
-     * Point constructor.
-     *
      * @param float ...$axises
+     *
+     * @throws InvalidDimensionsCount
      */
     public function __construct(float ...$axises)
     {
@@ -58,7 +58,10 @@ class Point implements PointInterface
     }
 
     /**
-     * @inheritDoc
+     * @param PointInterface $point
+     *
+     * @return float
+     * @throws InvalidPointProvided
      */
     public function distance(PointInterface $point): float
     {
@@ -86,7 +89,10 @@ class Point implements PointInterface
     }
 
     /**
-     * @inheritDoc
+     * @param int $dimension
+     *
+     * @return float
+     * @throws UnknownDimension
      */
     public function getDAxis(int $dimension): float
     {
