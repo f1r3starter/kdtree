@@ -51,6 +51,14 @@ class NearestSearch implements NearestSearchInterface
     }
 
     /**
+     * @return float
+     */
+    public function getNearestDistance(): float
+    {
+        return $this->bestDistance;
+    }
+
+    /**
      * @param NodeInterface|null $node
      * @param PointInterface $searchingPoint
      * @param int $cuttingDimension
@@ -82,13 +90,5 @@ class NearestSearch implements NearestSearchInterface
         }
 
         $this->findNearest($dx > 0 ? $node->getRight() : $node->getLeft(), $searchingPoint, $cuttingDimension);
-    }
-
-    /**
-     * @return float
-     */
-    public function getNearestDistance(): float
-    {
-        return $this->bestDistance;
     }
 }
