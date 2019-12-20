@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace KDTree\Search;
 
 use KDTree\Exceptions\InvalidDimensionsCount;
-use KDTree\PointsList;
+use KDTree\Structure\PointsList;
 use KDTree\Interfaces\{KDTreeInterface, NodeInterface, PartitionInterface, PointsListInterface, PartitionSearchInterface};
 
 class PartitionSearch implements PartitionSearchInterface

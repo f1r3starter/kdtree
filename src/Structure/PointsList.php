@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace KDTree;
+namespace KDTree\Structure;
 
 use KDTree\{Exceptions\InvalidDimensionsCount,
     Exceptions\InvalidPointProvided,
