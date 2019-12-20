@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace KDTree;
 
 use KDTree\Exceptions\{InvalidDimensionsCount, PointAlreadyExists, PointNotFound};
+use KDTree\Structure\{Node, PointsList};
 use KDTree\Interfaces\{KDTreeInterface, NodeInterface, PointInterface, PointsListInterface};
 
 class KDTree implements KDTreeInterface
@@ -176,12 +177,18 @@ class KDTree implements KDTreeInterface
         $leftMin = $this->findMin($node->getLeft(), $dimension, $nextDimension);
         $rightMin = $this->findMin($node->getRight(), $dimension, $nextDimension);
         $current = $node->getPoint()->getDAxis($dimension);
-        $mins = array_filter([
-                                 null !== $leftMin ? $leftMin->getDAxis($dimension) : null => $leftMin,
-                                 null !== $rightMin ? $rightMin->getDAxis($dimension) : null => $rightMin,
-                                 $current  => $node->getPoint(),
-                             ]);
-        $minKey = min(array_keys($mins));
+        $leftMinIndex = null === $leftMin ? null : $leftMin->getDAxis($dimension);
+        $rightMinIndex = null === $rightMin ? null : $rightMin->getDAxis($dimension);
+        $mins = [
+            $leftMinIndex  => $leftMin,
+            $rightMinIndex => $rightMin,
+            $current       => $node->getPoint(),
+        ];
+        $minKey = min(
+            array_keys(
+                array_filter($mins)
+            )
+        );
 
         return $mins[$minKey];
     }
