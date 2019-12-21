@@ -46,7 +46,7 @@ class PointsList implements PointsListInterface
     /**
      * @inheritDoc
      */
-    public function key(): int
+    public function key(): ?string 
     {
         return key($this->container);
     }
