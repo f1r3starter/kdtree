@@ -177,20 +177,29 @@ class KDTree implements KDTreeInterface
         $leftMin = $this->findMin($node->getLeft(), $dimension, $nextDimension);
         $rightMin = $this->findMin($node->getRight(), $dimension, $nextDimension);
         $current = $node->getPoint()->getDAxis($dimension);
-        $leftMinIndex = null === $leftMin ? null : $leftMin->getDAxis($dimension);
-        $rightMinIndex = null === $rightMin ? null : $rightMin->getDAxis($dimension);
-        $mins = [
-            $leftMinIndex  => $leftMin,
-            $rightMinIndex => $rightMin,
-            $current       => $node->getPoint(),
+        $minimums = [
+            $this->getPointAxis($leftMin, $dimension)  => $leftMin,
+            $this->getPointAxis($rightMin, $dimension) => $rightMin,
+            $current                                   => $node->getPoint(),
         ];
         $minKey = min(
             array_keys(
-                array_filter($mins)
+                array_filter($minimums)
             )
         );
 
-        return $mins[$minKey];
+        return $minimums[$minKey];
+    }
+
+    /**
+     * @param PointInterface|null $point
+     * @param int $dimension
+     *
+     * @return float|null
+     */
+    private function getPointAxis(?PointInterface $point, int $dimension): ?float
+    {
+        return null === $point ? null : $point->getDAxis($dimension);
     }
 
     /**
@@ -211,15 +220,9 @@ class KDTree implements KDTreeInterface
 
         if ($node->getPoint()->equals($point)) {
             if (null !== $node->getRight()) {
-                $node->setPoint(
-                    $this->findMin($node->getRight(), $cuttingDimension, $nextDimension)
-                );
-                $node->setRight($this->deletePoint($node->getPoint(), $node->getRight(), $nextDimension));
+                $this->rebuildFoundNode($node, $node->getRight(), $cuttingDimension);
             } elseif (null !== $node->getLeft()) {
-                $node->setPoint(
-                    $this->findMin($node->getLeft(), $cuttingDimension, $nextDimension)
-                );
-                $node->setRight($this->deletePoint($node->getPoint(), $node->getLeft(), $nextDimension));
+                $this->rebuildFoundNode($node, $node->getLeft(), $cuttingDimension);
             } else {
                 $node = null;
             }
@@ -230,5 +233,21 @@ class KDTree implements KDTreeInterface
         }
 
         return $node;
+    }
+
+    /**
+     * @param NodeInterface $node
+     * @param NodeInterface $nextNode
+     * @param int $cuttingDimension
+     *
+     * @throws PointNotFound
+     */
+    private function rebuildFoundNode(NodeInterface $node, NodeInterface $nextNode, int $cuttingDimension): void
+    {
+        $nextDimension = ($cuttingDimension + 1) % $this->dimensions;
+        $node->setPoint(
+            $this->findMin($nextNode, $cuttingDimension, $nextDimension)
+        );
+        $node->setRight($this->deletePoint($node->getPoint(), $nextNode, $nextDimension));
     }
 }
