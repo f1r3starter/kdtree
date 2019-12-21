@@ -77,7 +77,7 @@ class NearestSearch implements NearestSearchInterface
             $this->closestPoint = $node->getPoint();
         }
 
-        if (0 === $this->bestDistance) {
+        if (0.0 === $this->bestDistance) {
             return;
         }
 
