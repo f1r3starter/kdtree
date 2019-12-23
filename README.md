@@ -49,6 +49,8 @@ $nearestPoint = $search->nearest((new Point(41.2865, 174.7762)));
 
 ## Range search
 
+
+
 ```php
 <?php
 
