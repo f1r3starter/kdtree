@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace KDTree;
+namespace KDTree\Structure;
 
 use KDTree\Exceptions\{InvalidDimensionsCount, PointAlreadyExists, PointNotFound};
-use KDTree\Structure\{Node, PointsList};
 use KDTree\Interfaces\{KDTreeInterface, NodeInterface, PointInterface, PointsListInterface};
 
 class KDTree implements KDTreeInterface
