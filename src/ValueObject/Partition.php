@@ -30,7 +30,7 @@ class Partition implements PartitionInterface
     public function __construct(PointsListInterface $pointsList)
     {
         $pointCount = count($pointsList);
-        if (($pointCount & ($pointCount - 1)) !== 0) {
+        if ($pointCount !== 2 ** $pointsList->getDimensions()) {
             throw new InvalidPointsCount();
         }
 

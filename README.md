@@ -16,7 +16,7 @@ Firstly, you have to decide, how many dimensions your tree is going to be used f
 ```php
 <?php
 
-use KDTree\KDTree;  
+use KDTree\Structure\KDTree;  
 use KDTree\ValueObject\Point;
 
 $kdTree = new KDTree(2); // 2 for two-dimensional points, eg cities
@@ -39,7 +39,6 @@ After tree is constructed, we can try to find nearest point:
 ```php
 <?php
 
-use KDTree\KDTree;  
 use KDTree\Search\NearestSearch;
 use KDTree\ValueObject\Point;
 
@@ -54,9 +53,9 @@ $nearestPoint = $search->nearest((new Point(41.2865, 174.7762)));
 ```php
 <?php
 
-use KDTree\PointsList;
+use KDTree\Structure\PointsList;
 use KDTree\Search\PartitionSearch;
-use KDTree\ValueObject\Partition;
+use KDTree\ValueObject\{Partition, Point};
 
 $pointsList = new PointsList(2);  
 $pointsList->addPoint(new Point(46.8117, 33.4902));  
@@ -69,4 +68,4 @@ $foundPoints = $search->find(new Partition($pointsList));
   
 ## Credits
 
-- [Andrii Filenko][link-author]
+- [Andrii Filenko](https://github.com/f1r3starter)
