@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace KDTree\Structure;
 
-use KDTree\Exceptions\{InvalidDimensionsCount, PointAlreadyExists, PointNotFound};
+use KDTree\Exceptions\{InvalidDimensionsCount, InvalidPointProvided, PointAlreadyExists, PointNotFound};
 use KDTree\Interfaces\{KDTreeInterface, NodeInterface, PointInterface, PointsListInterface};
 
 class KDTree implements KDTreeInterface
@@ -58,7 +58,7 @@ class KDTree implements KDTreeInterface
      * @param PointInterface $point
      *
      * @return KDTreeInterface
-     * @throws Exceptions\InvalidPointProvided|PointAlreadyExists
+     * @throws PointAlreadyExists|InvalidPointProvided
      */
     public function put(PointInterface $point): KDTreeInterface
     {
