@@ -112,13 +112,13 @@ class PartitionTest extends TestCase
     public function unknownDimensionProvider(): \Generator
     {
         yield 'min' => [
-            'fn' => static function (Partition $partition) {
+            'fn' => static function(Partition $partition) {
                 $partition->getDMin(5);
             }
         ];
 
         yield 'max' => [
-            'fn' => static function (Partition $partition) {
+            'fn' => static function(Partition $partition) {
                 $partition->getDMax(5);
             }
         ];
