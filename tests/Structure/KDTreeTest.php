@@ -4,6 +4,7 @@ namespace Structure;
 
 use KDTree\Exceptions\InvalidDimensionsCount;
 use KDTree\Exceptions\PointAlreadyExists;
+use KDTree\Exceptions\PointNotFound;
 use KDTree\Structure\KDTree;
 use KDTree\ValueObject\Point;
 use PHPUnit\Framework\TestCase;
@@ -19,6 +20,7 @@ class KDTreeTest extends TestCase
         $this->assertTrue($kdTree->isEmpty());
         $this->assertEquals($dimensions, $kdTree->getDimensions());
         $this->assertNull($kdTree->getRoot());
+        $this->assertCount(0, $kdTree->points());
     }
 
     public function testInvalidDimensionsCount()
@@ -50,5 +52,30 @@ class KDTreeTest extends TestCase
         $kdTree->delete($point);
 
         $this->assertFalse($kdTree->contains($point));
+        for ($i = 0; $i <= 10; ++$i) {
+            for ($j = 10; $j >= 0; --$j) {
+                $kdTree->put(new Point($i, $j));
+            }
+        }
+
+        $this->assertEquals(121, $kdTree->points()->count());
+
+        for ($i = 0; $i <= 10; ++$i) {
+            for ($j = 10; $j >= 0; --$j) {
+                $kdTree->delete(new Point($i, $j));
+            }
+        }
+
+        $this->assertEquals(1, $kdTree->points()->count());
+        $kdTree->put(new Point(1, 1))
+               ->put(new Point(2, 2))
+               ->put(new Point(3, 3));
+
+        $kdTree->delete(new Point(2, 2));
+
+        $this->assertFalse($kdTree->contains(new Point(2, 2)));
+
+        $this->expectException(PointNotFound::class);
+        $kdTree->delete(new Point(999, 999));
     }
 }
