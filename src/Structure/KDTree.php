@@ -10,11 +10,6 @@ use KDTree\Interfaces\{KDTreeInterface, NodeInterface, PointInterface, PointsLis
 class KDTree implements KDTreeInterface
 {
     /**
-     * @var PointsListInterface
-     */
-    private $points;
-
-    /**
      * @var NodeInterface|null
      */
     private $root;
@@ -23,6 +18,11 @@ class KDTree implements KDTreeInterface
      * @var int
      */
     private $dimensions;
+
+    /**
+     * @var int
+     */
+    private $size = 0;
 
     /**
      * @param int $dimensions
@@ -35,7 +35,6 @@ class KDTree implements KDTreeInterface
             throw new InvalidDimensionsCount();
         }
         $this->dimensions = $dimensions;
-        $this->points = new PointsList($dimensions);
     }
 
     /**
@@ -51,7 +50,7 @@ class KDTree implements KDTreeInterface
      */
     public function size(): int
     {
-        return $this->points->count();
+        return $this->size;
     }
 
     /**
@@ -62,12 +61,8 @@ class KDTree implements KDTreeInterface
      */
     public function put(PointInterface $point): KDTreeInterface
     {
-        if ($this->points->pointExists($point)) {
-            throw new PointAlreadyExists();
-        }
-
         $this->root = $this->insertNode($this->root, $point, 0);
-        $this->points->addPoint($point);
+        ++$this->size;
 
         return $this;
     }
@@ -77,7 +72,7 @@ class KDTree implements KDTreeInterface
      */
     public function contains(PointInterface $point): bool
     {
-        return $this->points->pointExists($point);
+        return $this->findPoint($point, $this->root, 0);
     }
 
     /**
@@ -85,7 +80,7 @@ class KDTree implements KDTreeInterface
      */
     public function points(): PointsListInterface
     {
-        return $this->points;
+        return $this->getAllPoints($this->root, new PointsList($this->dimensions));
     }
 
     /**
@@ -96,8 +91,8 @@ class KDTree implements KDTreeInterface
      */
     public function delete(PointInterface $point): KDTreeInterface
     {
-        $this->deletePoint($point, $this->root, 0);
-        $this->points->removePoint($point);
+        $this->root = $this->deletePoint($point, $this->root, 0);
+        --$this->size;
 
         return $this;
     }
@@ -154,7 +149,7 @@ class KDTree implements KDTreeInterface
      *
      * @return PointInterface|null
      */
-    public function findMin(?NodeInterface $node, int $dimension, int $cuttingDimension): ?PointInterface
+    private function findMin(?NodeInterface $node, int $dimension, int $cuttingDimension): ?PointInterface
     {
         if (null === $node) {
             return null;
@@ -248,5 +243,50 @@ class KDTree implements KDTreeInterface
             $this->findMin($nextNode, $cuttingDimension, $nextDimension)
         );
         $node->setRight($this->deletePoint($node->getPoint(), $nextNode, $nextDimension));
+    }
+
+    /**
+     * @param PointInterface $point
+     * @param NodeInterface|null $node
+     * @param int $cuttingDimension
+     *
+     * @return bool
+     */
+    private function findPoint(PointInterface $point, ?NodeInterface $node, int $cuttingDimension): bool
+    {
+        if (null === $node) {
+            return false;
+        }
+
+        $nextDimension = ($cuttingDimension + 1) % $this->dimensions;
+
+        if ($node->getPoint()->equals($point)) {
+            return true;
+        }
+
+        if ($point->getDAxis($cuttingDimension) < $node->getPoint()->getDAxis($cuttingDimension)) {
+            return $this->findPoint($point, $node->getLeft(), $nextDimension);
+        }
+
+        return $this->findPoint($point, $node->getRight(), $nextDimension);
+    }
+
+    private function getAllPoints(?NodeInterface $node, PointsListInterface $pointsList): PointsListInterface
+    {
+        if (null === $node) {
+            return $pointsList;
+        }
+
+        $pointsList->addPoint($node->getPoint());
+
+        if (null !== $node->getLeft()) {
+            $this->getAllPoints($node->getLeft(), $pointsList);
+        }
+
+        if (null !== $node->getRight()) {
+            $this->getAllPoints($node->getRight(), $pointsList);
+        }
+
+        return $pointsList;
     }
 }
