@@ -34,7 +34,7 @@ class NearestSearch implements NearestSearchInterface
     public function __construct(KDTreeInterface $tree)
     {
         $this->tree = $tree;
-        $this->bestDistance = (float)PHP_INT_MAX;
+        $this->reset();
     }
 
     /**
@@ -44,8 +44,7 @@ class NearestSearch implements NearestSearchInterface
      */
     public function nearest(PointInterface $point): ?PointInterface
     {
-        $this->bestDistance = PHP_INT_MAX;
-        $this->closestPoint = null;
+        $this->reset();
         $this->findNearest($this->tree->getRoot(), $point);
 
         return $this->closestPoint;
@@ -91,5 +90,12 @@ class NearestSearch implements NearestSearchInterface
         }
 
         $this->findNearest($dx > 0 ? $node->getRight() : $node->getLeft(), $searchingPoint, $cuttingDimension);
+    }
+
+    private function reset(): void
+    {
+        $this->bestDistance = (float)PHP_INT_MAX;
+        $this->closestPoint = null;
+        $this->visited = 0;
     }
 }
