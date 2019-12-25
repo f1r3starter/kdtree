@@ -26,7 +26,7 @@ class NearestSearch implements NearestSearchInterface
     /**
      * @var float
      */
-    private $bestDistance = PHP_INT_MAX;
+    private $bestDistance;
 
     /**
      * @param KDTreeInterface $tree
@@ -34,6 +34,7 @@ class NearestSearch implements NearestSearchInterface
     public function __construct(KDTreeInterface $tree)
     {
         $this->tree = $tree;
+        $this->bestDistance = (float)PHP_INT_MAX;
     }
 
     /**
