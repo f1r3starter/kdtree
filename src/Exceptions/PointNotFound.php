@@ -6,5 +6,5 @@ namespace KDTree\Exceptions;
 
 class PointNotFound extends \LogicException
 {
-    protected $message = 'Point already exists';
+    protected $message = 'Point not found';
 }
