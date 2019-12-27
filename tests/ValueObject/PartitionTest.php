@@ -2,6 +2,7 @@
 
 namespace ValueObject;
 
+use Generator;
 use KDTree\Exceptions\InvalidDimensionsCount;
 use KDTree\Exceptions\InvalidPointProvided;
 use KDTree\Exceptions\InvalidPointsCount;
@@ -21,6 +22,21 @@ class PartitionTest extends TestCase
         $this->assertEquals(1, $partition->getDMin(1));
         $this->assertEquals(4, $partition->getDMax(0));
         $this->assertEquals(4, $partition->getDMax(1));
+    }
+
+    /**
+     * @return Partition
+     * @throws InvalidPointsCount|InvalidDimensionsCount|InvalidPointProvided
+     */
+    private function preparePartition(): Partition
+    {
+        $pointsList = new PointsList(2);
+        $pointsList->addPoint(new Point(1, 2))
+            ->addPoint(new Point(0, 3))
+            ->addPoint(new Point(4, 1))
+            ->addPoint(new Point(1, 4));
+
+        return new Partition($pointsList);
     }
 
     public function testFailConstruction(): void
@@ -90,7 +106,7 @@ class PartitionTest extends TestCase
         $partition = $this->preparePartition();
         $pointsList = new PointsList(1);
         $pointsList->addPoint(new Point(1))
-                    ->addPoint(new Point(0));
+            ->addPoint(new Point(0));
         $oneDPartition = new Partition($pointsList);
 
         $this->assertFalse($partition->equals($oneDPartition));
@@ -107,35 +123,20 @@ class PartitionTest extends TestCase
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
-    public function unknownDimensionProvider(): \Generator
+    public function unknownDimensionProvider(): Generator
     {
         yield 'min' => [
-            'fn' => static function(Partition $partition) {
+            'fn' => static function (Partition $partition) {
                 $partition->getDMin(5);
             }
         ];
 
         yield 'max' => [
-            'fn' => static function(Partition $partition) {
+            'fn' => static function (Partition $partition) {
                 $partition->getDMax(5);
             }
         ];
-    }
-
-    /**
-     * @return Partition
-     * @throws InvalidPointsCount|InvalidDimensionsCount|InvalidPointProvided
-     */
-    private function preparePartition(): Partition
-    {
-        $pointsList = new PointsList(2);
-        $pointsList->addPoint(new Point(1, 2))
-            ->addPoint(new Point(0, 3))
-            ->addPoint(new Point(4, 1))
-            ->addPoint(new Point(1, 4));
-
-        return new Partition($pointsList);
     }
 }

@@ -68,8 +68,8 @@ class KDTreeTest extends TestCase
 
         $this->assertEquals(1, $kdTree->points()->count());
         $kdTree->put(new Point(1, 1))
-               ->put(new Point(2, 2))
-               ->put(new Point(3, 3));
+            ->put(new Point(2, 2))
+            ->put(new Point(3, 3));
 
         $kdTree->delete(new Point(2, 2));
 
