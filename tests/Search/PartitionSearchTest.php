@@ -17,7 +17,7 @@ class PartitionSearchTest extends TestCase
         $partitionSearch = new PartitionSearch($this->prepareKdTree());
         $pointsList = new PointsList(2);
         $pointsList->addPoint(new Point(80, 80))
-            ->addPoint(new Point(99,99))
+            ->addPoint(new Point(99, 99))
             ->addPoint(new Point(70, 70))
             ->addPoint(new Point(60, 70));
         $partition = new Partition($pointsList);
