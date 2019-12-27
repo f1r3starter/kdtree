@@ -6,6 +6,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: "Install dependencies"
+          command: composer install -n --prefer-dist
+      - run:
           name: "Run tests"
           command: phpdbg -qrr vendor/bin/phpunit --coverage-html build/coverage-report
       - store_artifacts:
