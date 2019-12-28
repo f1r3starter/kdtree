@@ -1,6 +1,6 @@
 # K-D Trees
 [![CircleCI](https://circleci.com/gh/f1r3starter/kdtree.svg?style=svg)](https://circleci.com/gh/f1r3starter/kdtree)
-[![codecov](https://codecov.io/gh/f1r3starter/kdtree/branch/master/graph/badge.svg)]
+[![codecov](https://codecov.io/gh/f1r3starter/kdtree/branch/master/graph/badge.svg)](https://codecov.io/gh/f1r3starter/kdtree)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/f1r3starter/kdtree/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/f1r3starter/kdtree/?branch=master)
 
 
