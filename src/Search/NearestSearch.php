@@ -70,12 +70,7 @@ class NearestSearch implements NearestSearchInterface
         }
 
         ++$this->visited;
-        $distance = $node->getPoint()->distance($searchingPoint);
-
-        if (null === $this->closestPoint || $distance < $this->bestDistance) {
-            $this->bestDistance = $distance;
-            $this->closestPoint = $node->getPoint();
-        }
+        $this->chooseBestDistance($node, $searchingPoint);
 
         if (0.0 === $this->bestDistance) {
             return;
@@ -97,5 +92,19 @@ class NearestSearch implements NearestSearchInterface
         $this->bestDistance = (float) PHP_INT_MAX;
         $this->closestPoint = null;
         $this->visited = 0;
+    }
+
+    /**
+     * @param NodeInterface $pretenderNode
+     * @param PointInterface $searchingPoint
+     */
+    private function chooseBestDistance(NodeInterface $pretenderNode, PointInterface $searchingPoint): void
+    {
+        $pretenderDistance = $pretenderNode->getPoint()->distance($searchingPoint);
+
+        if (null === $this->closestPoint || $pretenderDistance < $this->bestDistance) {
+            $this->bestDistance = $pretenderDistance;
+            $this->closestPoint = $pretenderNode->getPoint();
+        }
     }
 }
