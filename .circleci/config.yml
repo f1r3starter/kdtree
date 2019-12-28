@@ -1,6 +1,4 @@
 version: 2.1
-orbs:
-  codecov: codecov/codecov@1.0.4
 jobs:
   build:
     docker:
@@ -15,5 +13,6 @@ jobs:
           command: phpdbg -qrr vendor/bin/phpunit --coverage-html build/coverage-report
       - store_artifacts:
           path:  build/coverage-report
-      - codecov/upload:
-          file: build/coverage-report/*
+      - run:
+          name: Upload code coverage to codecov.io
+          command: bash <(curl -s https://codecov.io/bash)
