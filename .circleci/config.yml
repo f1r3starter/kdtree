@@ -10,7 +10,7 @@ jobs:
           command: composer install -n --prefer-dist
       - run:
           name: "Run tests"
-          command: phpdbg -qrr vendor/bin/phpunit --coverage-html build/coverage-report
+          command: phpdbg -qrr vendor/bin/phpunit --coverage-html build/coverage-report --coverage-clover=coverage.xml
       - store_artifacts:
           path:  build/coverage-report
       - run:
