@@ -72,7 +72,7 @@ class NearestSearch implements NearestSearchInterface
         ++$this->visited;
         $this->chooseBestDistance($node, $searchingPoint);
 
-        if (0.0 === $this->bestDistance) {
+        if (0.0 >= $this->bestDistance) {
             return;
         }
 
