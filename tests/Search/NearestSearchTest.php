@@ -2,11 +2,17 @@
 
 namespace Search;
 
+use Generator;
+use KDTree\Exceptions\InvalidDimensionsCount;
+use KDTree\Exceptions\InvalidPointProvided;
+use KDTree\Exceptions\PointAlreadyExists;
 use KDTree\Interfaces\KDTreeInterface;
 use KDTree\Search\NearestSearch;
 use KDTree\Structure\KDTree;
 use KDTree\ValueObject\Point;
+use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
 class NearestSearchTest extends TestCase
 {
@@ -19,6 +25,12 @@ class NearestSearchTest extends TestCase
 
     /**
      * @dataProvider nearestProvider
+     *
+     * @param array $point
+     * @param array $nearest
+     * @param float $distance
+     *
+     * @throws InvalidDimensionsCount|InvalidPointProvided|PointAlreadyExists|ExpectationFailedException|InvalidArgumentException
      */
     public function testFindNearest(array $point, array $nearest, float $distance): void
     {
@@ -30,9 +42,9 @@ class NearestSearchTest extends TestCase
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
-    public function nearestProvider(): \Generator
+    public function nearestProvider(): Generator
     {
         yield 'another point' => [
             'point' => [1, 1],
@@ -49,6 +61,7 @@ class NearestSearchTest extends TestCase
 
     /**
      * @return KDTreeInterface
+     * @throws InvalidDimensionsCount|InvalidPointProvided|PointAlreadyExists
      */
     private function prepareKdTree(): KDTreeInterface
     {

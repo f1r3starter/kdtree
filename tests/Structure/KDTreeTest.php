@@ -23,7 +23,7 @@ class KDTreeTest extends TestCase
         $this->assertCount(0, $kdTree->points());
     }
 
-    public function testInvalidDimensionsCount()
+    public function testInvalidDimensionsCount(): void
     {
         $this->expectException(InvalidDimensionsCount::class);
         new KDTree(0);

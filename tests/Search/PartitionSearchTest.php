@@ -2,6 +2,9 @@
 
 namespace Search;
 
+use KDTree\Exceptions\InvalidDimensionsCount;
+use KDTree\Exceptions\InvalidPointProvided;
+use KDTree\Exceptions\PointAlreadyExists;
 use KDTree\Interfaces\KDTreeInterface;
 use KDTree\Search\PartitionSearch;
 use KDTree\Structure\KDTree;
@@ -29,6 +32,7 @@ class PartitionSearchTest extends TestCase
 
     /**
      * @return KDTreeInterface
+     * @throws InvalidDimensionsCount|InvalidPointProvided|PointAlreadyExists
      */
     private function prepareKdTree(): KDTreeInterface
     {
