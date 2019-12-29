@@ -52,7 +52,7 @@ $nearestPoint = $search->nearest((new Point(41.2865, 174.7762)));
 
 ## Range search
 
-Also there is an ability to find points in some particular range, which should have $2^k$ points, where k - is number dimensions in your K-D tree.
+Also there is an ability to find points in some particular range, which should have $2^{k}$ points, where k - is number dimensions in your K-D tree.
 ```php
 <?php
 
