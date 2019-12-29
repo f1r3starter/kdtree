@@ -52,8 +52,7 @@ $nearestPoint = $search->nearest((new Point(41.2865, 174.7762)));
 
 ## Range search
 
-
-
+Also there is an ability to find points in some particular range, which should have $2^k$ points, where k - is number dimensions in your K-D tree.
 ```php
 <?php
 
@@ -66,6 +65,7 @@ $pointsList->addPoint(new Point(46.8117, 33.4902));
 $pointsList->addPoint(new Point(31.3142, 42.5245));  
 $pointsList->addPoint(new Point(22.2525, 41.3412));  
 $pointsList->addPoint(new Point(55.4245, 52.5134));  
+
 $search = new PartitionSearch($kdTree);  
 $foundPoints = $search->find(new Partition($pointsList));
 ```
