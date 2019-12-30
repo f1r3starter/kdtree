@@ -69,7 +69,10 @@ $pointsList->addPoint(new Point(55.4245, 52.5134));
 $search = new PartitionSearch($kdTree);  
 $foundPoints = $search->find(new Partition($pointsList));
 ```
+
+# Demo
+Demo is available in [this repository](https://github.com/f1r3starter/kdtree-demo). 
   
-## Credits
+# Credits
 
 - [Andrii Filenko](https://github.com/f1r3starter)
