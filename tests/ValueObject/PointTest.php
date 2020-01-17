@@ -67,7 +67,13 @@ class PointTest extends TestCase
         $firstPoint->distance($secondPoint);
     }
 
-    private function preparePoint(...$points): PointInterface
+    /**
+     * @param float ...$points
+     *
+     * @return PointInterface
+     * @throws InvalidDimensionsCount
+     */
+    private function preparePoint(float ...$points): PointInterface
     {
         return new Point(...$points);
     }

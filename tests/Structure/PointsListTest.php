@@ -73,6 +73,11 @@ class PointsListTest extends TestCase
         $pointsList->removePoint($point);
     }
 
+    /**
+     * @return PointsListInterface
+     *
+     * @throws InvalidDimensionsCount|InvalidPointProvided
+     */
     private function preparePointsList(): PointsListInterface
     {
         return (new PointsList(2))
