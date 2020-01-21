@@ -6,5 +6,8 @@ namespace KDTree\Exceptions;
 
 class PointAlreadyExists extends \LogicException
 {
+    /**
+     * @var string
+     */
     protected $message = 'Point already exists';
 }

@@ -24,7 +24,7 @@ interface PointInterface
     public function getDimensions(): int;
 
     /**
-     * @return array
+     * @return float[]
      */
     public function getAxises(): array;
 

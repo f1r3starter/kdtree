@@ -18,7 +18,7 @@ class Point implements PointInterface
     private $dimensions;
 
     /**
-     * @var array
+     * @var float[]
      */
     private $axises;
 

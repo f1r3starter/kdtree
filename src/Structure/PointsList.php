@@ -18,7 +18,7 @@ class PointsList implements PointsListInterface
     private $dimensions;
 
     /**
-     * @var array
+     * @var PointInterface[]
      */
     private $container = [];
 
@@ -46,7 +46,7 @@ class PointsList implements PointsListInterface
     /**
      * @inheritDoc
      */
-    public function key(): ?string 
+    public function key(): ?string
     {
         return key($this->container);
     }
@@ -92,10 +92,7 @@ class PointsList implements PointsListInterface
     }
 
     /**
-     * @param PointInterface $point
-     *
-     * @return PointsListInterface
-     * @throws InvalidPointProvided
+     * @inheritDoc
      */
     public function addPoint(PointInterface $point): PointsListInterface
     {
@@ -110,7 +107,7 @@ class PointsList implements PointsListInterface
     /**
      * @param PointInterface $point
      *
-     * @return PointsListInterface
+     * @return PointsListInterface<PointInterface>
      * @throws PointNotFound
      */
     public function removePoint(PointInterface $point): PointsListInterface
