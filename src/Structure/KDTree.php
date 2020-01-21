@@ -118,10 +118,10 @@ class KDTree implements KDTreeInterface
      * @param PointInterface $point
      * @param int $cuttingDimension
      *
-     * @return NodeInterface|null
+     * @return NodeInterface
      * @throws PointAlreadyExists
      */
-    private function insertNode(?NodeInterface $node, PointInterface $point, int $cuttingDimension): ?NodeInterface
+    private function insertNode(?NodeInterface $node, PointInterface $point, int $cuttingDimension): NodeInterface
     {
         if (null === $node) {
             return new Node($point);
@@ -271,6 +271,12 @@ class KDTree implements KDTreeInterface
         return $this->findPoint($point, $node->getRight(), $nextDimension);
     }
 
+    /**
+     * @param NodeInterface|null                  $node
+     * @param PointsListInterface<PointInterface> $pointsList
+     *
+     * @return PointsListInterface<PointInterface>
+     */
     private function getAllPoints(?NodeInterface $node, PointsListInterface $pointsList): PointsListInterface
     {
         if (null === $node) {

@@ -31,7 +31,7 @@ interface KDTreeInterface
     public function contains(PointInterface $point): bool;
 
     /**
-     * @return PointsListInterface
+     * @return PointsListInterface<PointInterface>
      */
     public function points(): PointsListInterface;
 

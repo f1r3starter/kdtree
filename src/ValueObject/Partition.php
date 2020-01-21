@@ -8,22 +8,22 @@ use KDTree\Interfaces\{PartitionInterface, PointInterface, PointsListInterface};
 class Partition implements PartitionInterface
 {
     /**
-     * @var PointsListInterface
+     * @var PointsListInterface<PointInterface>
      */
     private $pointsList;
 
     /**
-     * @var array
+     * @var float[]
      */
     private $dMax;
 
     /**
-     * @var array
+     * @var float[]
      */
     private $dMin;
 
     /**
-     * @param PointsListInterface $pointsList
+     * @param PointsListInterface<PointInterface> $pointsList
      *
      * @throws InvalidPointsCount
      */

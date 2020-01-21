@@ -14,14 +14,14 @@ interface PointsListInterface extends \Iterator, \Countable
     /**
      * @param PointInterface $point
      *
-     * @return PointsListInterface
+     * @return PointsListInterface<PointInterface>
      */
     public function addPoint(PointInterface $point): PointsListInterface;
 
     /**
      * @param PointInterface $point
      *
-     * @return PointsListInterface
+     * @return PointsListInterface<PointInterface>
      */
     public function removePoint(PointInterface $point): PointsListInterface;
 

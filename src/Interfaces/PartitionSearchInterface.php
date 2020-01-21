@@ -9,7 +9,7 @@ interface PartitionSearchInterface
     /**
      * @param PartitionInterface $partition
      *
-     * @return PointsListInterface
+     * @return PointsListInterface<PointInterface>
      */
     public function find(PartitionInterface $partition): PointsListInterface;
 }
