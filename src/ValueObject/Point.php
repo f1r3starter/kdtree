@@ -5,7 +5,7 @@ namespace KDTree\ValueObject;
 use KDTree\Exceptions\{InvalidDimensionsCount, InvalidPointProvided, UnknownDimension};
 use KDTree\Interfaces\PointInterface;
 
-class Point implements PointInterface
+final class Point implements PointInterface
 {
     /**
      * @var string

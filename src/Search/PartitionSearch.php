@@ -6,7 +6,6 @@ namespace KDTree\Search;
 
 use KDTree\Exceptions\InvalidDimensionsCount;
 use KDTree\Structure\PointsList;
-use KDTree\ValueObject\Point;
 use KDTree\Interfaces\{KDTreeInterface,
     NodeInterface,
     PartitionInterface,
@@ -14,7 +13,7 @@ use KDTree\Interfaces\{KDTreeInterface,
     PointsListInterface,
     PartitionSearchInterface};
 
-class PartitionSearch implements PartitionSearchInterface
+final class PartitionSearch implements PartitionSearchInterface
 {
     /**
      * @var KDTreeInterface
@@ -30,7 +29,10 @@ class PartitionSearch implements PartitionSearchInterface
     }
 
     /**
-     * @inheritDoc
+     * @param PartitionInterface $partition
+     *
+     * @return PointsListInterface
+     * @throws InvalidDimensionsCount
      */
     public function find(PartitionInterface $partition): PointsListInterface
     {

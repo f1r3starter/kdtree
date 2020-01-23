@@ -10,7 +10,7 @@ use KDTree\{Exceptions\InvalidDimensionsCount,
     Interfaces\PointInterface,
     Interfaces\PointsListInterface};
 
-class PointsList implements PointsListInterface
+final class PointsList implements PointsListInterface
 {
     /**
      * @var int
@@ -92,7 +92,10 @@ class PointsList implements PointsListInterface
     }
 
     /**
-     * @inheritDoc
+     * @param PointInterface $point
+     *
+     * @return PointsListInterface
+     * @throws InvalidPointProvided
      */
     public function addPoint(PointInterface $point): PointsListInterface
     {

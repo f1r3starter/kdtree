@@ -5,7 +5,7 @@ namespace KDTree\ValueObject;
 use KDTree\Exceptions\{InvalidPointsCount, UnknownDimension};
 use KDTree\Interfaces\{PartitionInterface, PointInterface, PointsListInterface};
 
-class Partition implements PartitionInterface
+final class Partition implements PartitionInterface
 {
     /**
      * @var PointsListInterface<PointInterface>
