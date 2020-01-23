@@ -7,7 +7,7 @@ namespace KDTree\Structure;
 use KDTree\Exceptions\{InvalidDimensionsCount, InvalidPointProvided, PointAlreadyExists, PointNotFound};
 use KDTree\Interfaces\{KDTreeInterface, NodeInterface, PointInterface, PointsListInterface};
 
-class KDTree implements KDTreeInterface
+final class KDTree implements KDTreeInterface
 {
     /**
      * @var NodeInterface|null
@@ -76,7 +76,8 @@ class KDTree implements KDTreeInterface
     }
 
     /**
-     * @inheritDoc
+     * @return PointsListInterface
+     * @throws InvalidDimensionsCount
      */
     public function points(): PointsListInterface
     {

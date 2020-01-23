@@ -6,7 +6,7 @@ namespace KDTree\Search;
 
 use KDTree\Interfaces\{KDTreeInterface, NearestSearchInterface, NodeInterface, PointInterface};
 
-class NearestSearch implements NearestSearchInterface
+final class NearestSearch implements NearestSearchInterface
 {
     /**
      * @var KDTreeInterface
