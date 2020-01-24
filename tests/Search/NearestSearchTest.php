@@ -14,7 +14,7 @@ use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
-class NearestSearchTest extends TestCase
+final class NearestSearchTest extends TestCase
 {
     public function testConstruction(): void
     {
