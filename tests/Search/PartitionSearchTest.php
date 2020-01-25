@@ -13,7 +13,7 @@ use KDTree\ValueObject\Partition;
 use KDTree\ValueObject\Point;
 use PHPUnit\Framework\TestCase;
 
-class PartitionSearchTest extends TestCase
+final class PartitionSearchTest extends TestCase
 {
     public function testSearch(): void
     {

@@ -9,7 +9,7 @@ use KDTree\Structure\KDTree;
 use KDTree\ValueObject\Point;
 use PHPUnit\Framework\TestCase;
 
-class KDTreeTest extends TestCase
+final class KDTreeTest extends TestCase
 {
     public function testEmptyConstruction(): void
     {

@@ -12,7 +12,7 @@ use KDTree\ValueObject\Partition;
 use KDTree\ValueObject\Point;
 use PHPUnit\Framework\TestCase;
 
-class PartitionTest extends TestCase
+final class PartitionTest extends TestCase
 {
     public function testSuccessConstruction(): void
     {
