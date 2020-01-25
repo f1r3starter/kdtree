@@ -10,7 +10,7 @@ use KDTree\Structure\PointsList;
 use KDTree\ValueObject\Point;
 use PHPUnit\Framework\TestCase;
 
-class PointsListTest extends TestCase
+final class PointsListTest extends TestCase
 {
     public function testConstructAndIterate(): void
     {

@@ -6,7 +6,7 @@ use KDTree\Structure\Node;
 use KDTree\ValueObject\Point;
 use PHPUnit\Framework\TestCase;
 
-class NodeTest extends TestCase
+final class NodeTest extends TestCase
 {
     public function testConstruction(): void
     {
