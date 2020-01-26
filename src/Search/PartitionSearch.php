@@ -31,7 +31,7 @@ final class PartitionSearch implements PartitionSearchInterface
     /**
      * @param PartitionInterface $partition
      *
-     * @return PointsListInterface
+     * @return PointsListInterface<PointInterface>
      * @throws InvalidDimensionsCount
      */
     public function find(PartitionInterface $partition): PointsListInterface

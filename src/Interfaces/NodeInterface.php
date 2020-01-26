@@ -7,16 +7,16 @@ namespace KDTree\Interfaces;
 interface NodeInterface
 {
     /**
-     * @return PointInterface
+     * @return PointInterface|null
      */
-    public function getPoint(): PointInterface;
+    public function getPoint(): ?PointInterface;
 
     /**
-     * @param PointInterface $point
+     * @param PointInterface|null $point
      *
      * @return NodeInterface
      */
-    public function setPoint(PointInterface $point): NodeInterface;
+    public function setPoint(?PointInterface $point): NodeInterface;
 
     /**
      * @return NodeInterface|null

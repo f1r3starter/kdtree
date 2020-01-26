@@ -10,7 +10,7 @@ final class Point implements PointInterface
     /**
      * @var string
      */
-    private $name;
+    private $name = '';
 
     /**
      * @var int
