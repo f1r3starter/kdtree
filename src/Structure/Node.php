@@ -9,7 +9,7 @@ use KDTree\{Interfaces\NodeInterface, Interfaces\PointInterface};
 final class Node implements NodeInterface
 {
     /**
-     * @var PointInterface
+     * @var PointInterface|null
      */
     private $point;
 
@@ -34,7 +34,7 @@ final class Node implements NodeInterface
     /**
      * @inheritDoc
      */
-    public function getPoint(): PointInterface
+    public function getPoint(): ?PointInterface
     {
         return $this->point;
     }

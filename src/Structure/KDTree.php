@@ -76,7 +76,7 @@ final class KDTree implements KDTreeInterface
     }
 
     /**
-     * @return PointsListInterface
+     * @return PointsListInterface<PointInterface>
      * @throws InvalidDimensionsCount
      */
     public function points(): PointsListInterface
