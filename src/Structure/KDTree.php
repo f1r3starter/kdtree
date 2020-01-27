@@ -124,7 +124,7 @@ final class KDTree implements KDTreeInterface
      */
     private function insertNode(?NodeInterface $node, PointInterface $point, int $cuttingDimension): NodeInterface
     {
-        if (null === $node) {
+        if (null === $node || null === $node->getPoint()) {
             return new Node($point);
         }
 
@@ -152,7 +152,7 @@ final class KDTree implements KDTreeInterface
      */
     private function findMin(?NodeInterface $node, int $dimension, int $cuttingDimension): ?PointInterface
     {
-        if (null === $node) {
+        if (null === $node || null === $node->getPoint()) {
             return null;
         }
 
@@ -207,7 +207,7 @@ final class KDTree implements KDTreeInterface
      */
     private function deletePoint(PointInterface $point, ?NodeInterface $node, int $cuttingDimension): ?NodeInterface
     {
-        if (null === $node) {
+        if (null === $node || null === $node->getPoint()) {
             throw new PointNotFound();
         }
 
@@ -255,7 +255,7 @@ final class KDTree implements KDTreeInterface
      */
     private function findPoint(PointInterface $point, ?NodeInterface $node, int $cuttingDimension): bool
     {
-        if (null === $node) {
+        if (null === $node || null === $node->getPoint()) {
             return false;
         }
 

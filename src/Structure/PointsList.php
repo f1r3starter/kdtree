@@ -94,7 +94,7 @@ final class PointsList implements PointsListInterface
     /**
      * @param PointInterface $point
      *
-     * @return PointsListInterface
+     * @return PointsListInterface<PointInterface>
      * @throws InvalidPointProvided
      */
     public function addPoint(PointInterface $point): PointsListInterface

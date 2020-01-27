@@ -71,7 +71,7 @@ final class Point implements PointInterface
 
         $result = array_reduce(
             range(0, $this->dimensions - 1),
-            function(float $result, int $dimension) use ($point) {
+            function(float $result, int $dimension) use ($point): float {
                 return $result + ($point->getDAxis($dimension) - $this->getDAxis($dimension)) ** 2;
             },
             0.0
