@@ -65,7 +65,7 @@ final class NearestSearch implements NearestSearchInterface
      */
     private function findNearest(?NodeInterface $node, PointInterface $searchingPoint, int $cuttingDimension = 0): void
     {
-        if (null === $node || null === $node->getPoint()) {
+        if (null === $node) {
             return;
         }
 
@@ -100,10 +100,6 @@ final class NearestSearch implements NearestSearchInterface
      */
     private function chooseBestDistance(NodeInterface $pretenderNode, PointInterface $searchingPoint): void
     {
-        if (null === $pretenderNode->getPoint()) {
-            return;
-        }
-
         $pretenderDistance = $pretenderNode->getPoint()->distance($searchingPoint);
 
         if (null === $this->closestPoint || $pretenderDistance < $this->bestDistance) {

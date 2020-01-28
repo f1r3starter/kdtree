@@ -124,7 +124,7 @@ final class KDTree implements KDTreeInterface
      */
     private function insertNode(?NodeInterface $node, PointInterface $point, int $cuttingDimension): NodeInterface
     {
-        if (null === $node || null === $node->getPoint()) {
+        if (null === $node) {
             return new Node($point);
         }
 
@@ -152,7 +152,7 @@ final class KDTree implements KDTreeInterface
      */
     private function findMin(?NodeInterface $node, int $dimension, int $cuttingDimension): ?PointInterface
     {
-        if (null === $node || null === $node->getPoint()) {
+        if (null === $node) {
             return null;
         }
 
@@ -207,7 +207,7 @@ final class KDTree implements KDTreeInterface
      */
     private function deletePoint(PointInterface $point, ?NodeInterface $node, int $cuttingDimension): ?NodeInterface
     {
-        if (null === $node || null === $node->getPoint()) {
+        if (null === $node) {
             throw new PointNotFound();
         }
 
@@ -240,10 +240,14 @@ final class KDTree implements KDTreeInterface
     private function rebuildFoundNode(NodeInterface $node, NodeInterface $nextNode, int $cuttingDimension): void
     {
         $nextDimension = ($cuttingDimension + 1) % $this->dimensions;
-        $node->setPoint(
-            $this->findMin($nextNode, $cuttingDimension, $nextDimension)
-        );
-        $node->setRight($this->deletePoint($node->getPoint(), $nextNode, $nextDimension));
+        $point = $this->findMin($nextNode, $cuttingDimension, $nextDimension);
+
+        if (null === $point) {
+            return;
+        }
+
+        $node->setPoint($point);
+        $node->setRight($this->deletePoint($point, $nextNode, $nextDimension));
     }
 
     /**
@@ -255,7 +259,7 @@ final class KDTree implements KDTreeInterface
      */
     private function findPoint(PointInterface $point, ?NodeInterface $node, int $cuttingDimension): bool
     {
-        if (null === $node || null === $node->getPoint()) {
+        if (null === $node) {
             return false;
         }
 
