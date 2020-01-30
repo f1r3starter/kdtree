@@ -52,16 +52,16 @@ final class KDTreeTest extends TestCase
         $kdTree->delete($point);
 
         $this->assertFalse($kdTree->contains($point));
-        for ($i = 0; $i <= 10; ++$i) {
-            for ($j = 10; $j >= 0; --$j) {
+        for ($i = 0; $i < 11; ++$i) {
+            for ($j = 11; $j > 0; --$j) {
                 $kdTree->put(new Point($i, $j));
             }
         }
 
         $this->assertEquals(121, $kdTree->points()->count());
 
-        for ($i = 0; $i <= 10; ++$i) {
-            for ($j = 10; $j >= 0; --$j) {
+        for ($i = 0; $i < 11; ++$i) {
+            for ($j = 11; $j > 0; --$j) {
                 $kdTree->delete(new Point($i, $j));
             }
         }
