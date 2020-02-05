@@ -148,14 +148,10 @@ final class KDTree implements KDTreeInterface
      * @param int $dimension
      * @param int $cuttingDimension
      *
-     * @return PointInterface|null
+     * @return PointInterface
      */
-    private function findMin(?NodeInterface $node, int $dimension, int $cuttingDimension): ?PointInterface
+    private function findMin(NodeInterface $node, int $dimension, int $cuttingDimension): PointInterface
     {
-        if (null === $node) {
-            return null;
-        }
-
         $nextDimension = ($cuttingDimension + 1) % $this->dimensions;
         if ($cuttingDimension === $dimension) {
             if (null === $node->getLeft()) {
@@ -169,21 +165,13 @@ final class KDTree implements KDTreeInterface
             );
         }
 
-        $leftMin = $this->findMin($node->getLeft(), $dimension, $nextDimension);
-        $rightMin = $this->findMin($node->getRight(), $dimension, $nextDimension);
-        $current = $node->getPoint()->getDAxis($dimension);
-        $minimums = [
-            $this->getPointAxis($leftMin, $dimension)  => $leftMin,
-            $this->getPointAxis($rightMin, $dimension) => $rightMin,
-            $current                                   => $node->getPoint(),
-        ];
-        $minKey = min(
-            array_keys(
-                array_filter($minimums)
-            )
+        return $this->chooseMin(
+            $dimension,
+            $nextDimension,
+            $node,
+            $node->getLeft(),
+            $node->getRight()
         );
-
-        return $minimums[$minKey];
     }
 
     /**
@@ -241,11 +229,6 @@ final class KDTree implements KDTreeInterface
     {
         $nextDimension = ($cuttingDimension + 1) % $this->dimensions;
         $point = $this->findMin($nextNode, $cuttingDimension, $nextDimension);
-
-        if (null === $point) {
-            return;
-        }
-
         $node->setPoint($point);
         $node->setRight($this->deletePoint($point, $nextNode, $nextDimension));
     }
@@ -299,5 +282,32 @@ final class KDTree implements KDTreeInterface
         }
 
         return $pointsList;
+    }
+
+    /**
+     * @param int $dimension
+     * @param int $nextDimension
+     * @param NodeInterface $currentNode
+     * @param NodeInterface|null ...$nodes
+     *
+     * @return PointInterface
+     */
+    private function chooseMin(int $dimension, int $nextDimension, NodeInterface $currentNode, ?NodeInterface ... $nodes): PointInterface
+    {
+        $nodes = array_filter($nodes);
+
+        $minAxis = $currentNode->getPoint()->getDAxis($dimension);
+        $minPoint = $currentNode->getPoint();
+
+        foreach ($nodes as $node) {
+            $currentPoint = $this->findMin($node, $dimension, $nextDimension);
+            $currentAxis = $this->getPointAxis($currentPoint, $dimension);
+            if ($currentAxis < $minAxis) {
+                $minPoint = $currentPoint;
+                $minAxis = $currentAxis;
+            }
+        }
+
+        return $minPoint;
     }
 }
