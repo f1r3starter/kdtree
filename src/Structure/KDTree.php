@@ -144,7 +144,7 @@ final class KDTree implements KDTreeInterface
     }
 
     /**
-     * @param NodeInterface|null $node
+     * @param NodeInterface $node
      * @param int $dimension
      * @param int $cuttingDimension
      *
