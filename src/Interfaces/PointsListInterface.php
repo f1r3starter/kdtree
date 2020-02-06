@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace KDTree\Interfaces;
 
+/**
+ * @generic <string, PointInterface>
+ */
 interface PointsListInterface extends \Iterator, \Countable
 {
     /**
