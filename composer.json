@@ -27,6 +27,7 @@
     "psalm": "vendor/bin/psalm --config=psalm.xml",
     "phpstan": "vendor/bin/phpstan analyse src --level 7",
     "test": "vendor/bin/phpunit",
-    "test-coverage": "vendor/bin/phpunit --coverage-text --coverage-clover=build/coverage.xml"
+    "test-coverage": "vendor/bin/phpunit --coverage-text --coverage-clover=build/coverage.xml",
+    "phpcs": "vendor/bin/phpcs --standard=PSR12 ./src"
   }
 }
