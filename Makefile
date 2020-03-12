@@ -1,5 +1,9 @@
 test:
     composer test
 
-test-coverage
+test-coverage:
     composer test-coverage
+
+check:
+    composer php-cs
+
