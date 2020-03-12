@@ -5,5 +5,5 @@ test-coverage:
     composer test-coverage
 
 check:
-    composer php-cs
+    composer phpcs
 
