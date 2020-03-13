@@ -7,3 +7,5 @@ test-coverage:
 check:
     composer phpcs
 
+fix:
+    composer phpcbf
