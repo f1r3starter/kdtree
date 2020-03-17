@@ -1,11 +1,11 @@
 test:
-    composer test
+	composer test
 
 test-coverage:
-    composer test-coverage
+	composer test-coverage
 
 check:
-    composer phpcs
+	composer phpcs
 
 fix:
-    composer phpcbf
+	composer phpcbf
