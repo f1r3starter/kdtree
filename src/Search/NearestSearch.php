@@ -60,8 +60,8 @@ final class NearestSearch implements NearestSearchInterface
 
     /**
      * @param NodeInterface|null $node
-     * @param PointInterface $searchingPoint
-     * @param int $cuttingDimension
+     * @param PointInterface     $searchingPoint
+     * @param int                $cuttingDimension
      */
     private function findNearest(?NodeInterface $node, PointInterface $searchingPoint, int $cuttingDimension = 0): void
     {
@@ -95,7 +95,7 @@ final class NearestSearch implements NearestSearchInterface
     }
 
     /**
-     * @param NodeInterface $pretenderNode
+     * @param NodeInterface  $pretenderNode
      * @param PointInterface $searchingPoint
      */
     private function chooseBestDistance(NodeInterface $pretenderNode, PointInterface $searchingPoint): void

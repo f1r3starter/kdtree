@@ -116,8 +116,8 @@ final class KDTree implements KDTreeInterface
 
     /**
      * @param NodeInterface|null $node
-     * @param PointInterface $point
-     * @param int $cuttingDimension
+     * @param PointInterface     $point
+     * @param int                $cuttingDimension
      *
      * @return NodeInterface
      * @throws PointAlreadyExists
@@ -145,8 +145,8 @@ final class KDTree implements KDTreeInterface
 
     /**
      * @param NodeInterface $node
-     * @param int $dimension
-     * @param int $cuttingDimension
+     * @param int           $dimension
+     * @param int           $cuttingDimension
      *
      * @return PointInterface
      */
@@ -176,7 +176,7 @@ final class KDTree implements KDTreeInterface
 
     /**
      * @param PointInterface|null $point
-     * @param int $dimension
+     * @param int                 $dimension
      *
      * @return float|null
      */
@@ -186,9 +186,9 @@ final class KDTree implements KDTreeInterface
     }
 
     /**
-     * @param PointInterface $point
+     * @param PointInterface     $point
      * @param NodeInterface|null $node
-     * @param int $cuttingDimension
+     * @param int                $cuttingDimension
      *
      * @return NodeInterface|null
      * @throws PointNotFound
@@ -221,7 +221,7 @@ final class KDTree implements KDTreeInterface
     /**
      * @param NodeInterface $node
      * @param NodeInterface $nextNode
-     * @param int $cuttingDimension
+     * @param int           $cuttingDimension
      *
      * @throws PointNotFound
      */
@@ -234,9 +234,9 @@ final class KDTree implements KDTreeInterface
     }
 
     /**
-     * @param PointInterface $point
+     * @param PointInterface     $point
      * @param NodeInterface|null $node
-     * @param int $cuttingDimension
+     * @param int                $cuttingDimension
      *
      * @return bool
      */
@@ -285,14 +285,14 @@ final class KDTree implements KDTreeInterface
     }
 
     /**
-     * @param int $dimension
-     * @param int $nextDimension
-     * @param NodeInterface $currentNode
+     * @param int                $dimension
+     * @param int                $nextDimension
+     * @param NodeInterface      $currentNode
      * @param NodeInterface|null ...$nodes
      *
      * @return PointInterface
      */
-    private function chooseMin(int $dimension, int $nextDimension, NodeInterface $currentNode, ?NodeInterface ... $nodes): PointInterface
+    private function chooseMin(int $dimension, int $nextDimension, NodeInterface $currentNode, ?NodeInterface ...$nodes): PointInterface
     {
         $nodes = array_filter($nodes);
 
