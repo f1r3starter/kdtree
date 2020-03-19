@@ -159,7 +159,8 @@ final class Partition implements PartitionInterface
         }
 
         foreach (range(0, $this->getDimensions() - 1) as $dimension) {
-            if ($this->getDMin($dimension) !== $partition->getDMin($dimension)
+            if (
+                $this->getDMin($dimension) !== $partition->getDMin($dimension)
                 || $this->getDMax($dimension) !== $partition->getDMax($dimension)
             ) {
                 return false;

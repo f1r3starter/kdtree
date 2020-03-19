@@ -292,8 +292,12 @@ final class KDTree implements KDTreeInterface
      *
      * @return PointInterface
      */
-    private function chooseMin(int $dimension, int $nextDimension, NodeInterface $currentNode, ?NodeInterface ...$nodes): PointInterface
-    {
+    private function chooseMin(
+        int $dimension,
+        int $nextDimension,
+        NodeInterface $currentNode,
+        ?NodeInterface ...$nodes
+    ): PointInterface {
         $nodes = array_filter($nodes);
 
         $minAxis = $currentNode->getPoint()->getDAxis($dimension);
