@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace KDTree\Interfaces;
 
+/**
+ * Interface NearestSearchInterface
+ *
+ * @package KDTree\Interfaces
+ */
 interface NearestSearchInterface
 {
     /**

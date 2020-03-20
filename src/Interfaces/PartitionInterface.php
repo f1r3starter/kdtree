@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace KDTree\Interfaces;
 
+/**
+ * Interface PartitionInterface
+ *
+ * @package KDTree\Interfaces
+ */
 interface PartitionInterface
 {
     /**

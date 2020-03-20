@@ -4,7 +4,14 @@ declare(strict_types=1);
 
 namespace KDTree\Exceptions;
 
-final class PointNotFound extends \LogicException
+use LogicException;
+
+/**
+ * Class PointNotFound
+ *
+ * @package KDTree\Exceptions
+ */
+final class PointNotFound extends LogicException
 {
     /**
      * @var string

@@ -4,7 +4,14 @@ declare(strict_types=1);
 
 namespace KDTree\Exceptions;
 
-final class InvalidPointsCount extends \InvalidArgumentException
+use InvalidArgumentException;
+
+/**
+ * Class InvalidPointsCount
+ *
+ * @package KDTree\Exceptions
+ */
+final class InvalidPointsCount extends InvalidArgumentException
 {
     /**
      * @var string

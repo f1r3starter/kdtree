@@ -6,6 +6,11 @@ namespace KDTree\Structure;
 
 use KDTree\{Interfaces\NodeInterface, Interfaces\PointInterface};
 
+/**
+ * Class Node
+ *
+ * @package KDTree\Structure
+ */
 final class Node implements NodeInterface
 {
     /**

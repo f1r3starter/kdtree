@@ -10,6 +10,11 @@ use KDTree\{Exceptions\InvalidDimensionsCount,
     Interfaces\PointInterface,
     Interfaces\PointsListInterface};
 
+/**
+ * Class PointsList
+ *
+ * @package KDTree\Structure
+ */
 final class PointsList implements PointsListInterface
 {
     /**

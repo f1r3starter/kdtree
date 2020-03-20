@@ -4,7 +4,14 @@ declare(strict_types=1);
 
 namespace KDTree\Exceptions;
 
-final class InvalidDimensionsCount extends \InvalidArgumentException
+use InvalidArgumentException;
+
+/**
+ * Class InvalidDimensionsCount
+ *
+ * @package KDTree\Exceptions
+ */
+final class InvalidDimensionsCount extends InvalidArgumentException
 {
     /**
      * @var string

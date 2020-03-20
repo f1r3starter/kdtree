@@ -4,7 +4,14 @@ declare(strict_types=1);
 
 namespace KDTree\Exceptions;
 
-final class PointAlreadyExists extends \LogicException
+use LogicException;
+
+/**
+ * Class PointAlreadyExists
+ *
+ * @package KDTree\Exceptions
+ */
+final class PointAlreadyExists extends LogicException
 {
     /**
      * @var string

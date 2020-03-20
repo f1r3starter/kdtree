@@ -6,6 +6,11 @@ namespace KDTree\Search;
 
 use KDTree\Interfaces\{KDTreeInterface, NearestSearchInterface, NodeInterface, PointInterface};
 
+/**
+ * Class NearestSearch
+ *
+ * @package KDTree\Search
+ */
 final class NearestSearch implements NearestSearchInterface
 {
     /**
@@ -89,7 +94,7 @@ final class NearestSearch implements NearestSearchInterface
 
     private function reset(): void
     {
-        $this->bestDistance = (float) PHP_INT_MAX;
+        $this->bestDistance = (float)PHP_INT_MAX;
         $this->closestPoint = null;
         $this->visited = 0;
     }

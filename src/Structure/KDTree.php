@@ -7,6 +7,11 @@ namespace KDTree\Structure;
 use KDTree\Exceptions\{InvalidDimensionsCount, InvalidPointProvided, PointAlreadyExists, PointNotFound};
 use KDTree\Interfaces\{KDTreeInterface, NodeInterface, PointInterface, PointsListInterface};
 
+/**
+ * Class KDTree
+ *
+ * @package KDTree\Structure
+ */
 final class KDTree implements KDTreeInterface
 {
     /**

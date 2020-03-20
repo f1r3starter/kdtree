@@ -4,7 +4,14 @@ declare(strict_types=1);
 
 namespace KDTree\Exceptions;
 
-final class UnknownDimension extends \InvalidArgumentException
+use InvalidArgumentException;
+
+/**
+ * Class UnknownDimension
+ *
+ * @package KDTree\Exceptions
+ */
+final class UnknownDimension extends InvalidArgumentException
 {
     /**
      * @var string
