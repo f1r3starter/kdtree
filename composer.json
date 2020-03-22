@@ -30,6 +30,5 @@
     "test-coverage": "vendor/bin/phpunit --coverage-text --coverage-clover=build/coverage.xml",
     "phpcs": "vendor/bin/phpcs --standard=PSR12 ./src",
     "phpcbf": "vendor/bin/phpcbf ./src"
-
   }
 }
